@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> John Mark & Shaine | Wedding Celebration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ivory: #fdf9f3;
+            --gold: #c5a47e;
+            --rose: #e8c3b9;
+            --forest: #4a6b5f;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lora', serif;
+            background: var(--ivory);
+            color: #333;
+            line-height: 1.6;
+            background-image: url('images/wallpaper.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+        /* crop to fill */
+    background-position: center; 
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(253, 249, 243, 0.85);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            text-align: center;
+            padding: 4rem 0 2rem;
+            position: relative;
+        }
+        
+        .logo {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4.5rem;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px var(--shadow);
+        }
+        
+        .date-location {
+            font-size: 1.2rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin: 2rem 0;
+        }
+        
+        .hero h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--forest);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 3px var(--shadow);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #5a5a5a;
+            font-style: italic;
+        }
+        
+        .divider {
+            height: 3px;
+            width: 150px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            margin: 2.5rem auto;
+            border-radius: 3px;
+        }
+        
+        .lookup-section {
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow);
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 3rem auto;
+            border: 1px solid rgba(197, 164, 126, 0.3);
+        }
+        
+        .lookup-section h2 {
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--forest);
+            margin-bottom: 1.5rem;
+        }
+        
+        .instructions {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin: 1.5rem 0;
+        }
+        
+        input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid var(--rose);
+            border-radius: 8px;
+            font-family: 'Lora', serif;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(197, 164, 126, 0.2);
+        }
+        
+        button {
+            background: var(--forest);
+            color: var(--ivory);
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            font-family: 'Lora', serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(74, 107, 95, 0.2);
+        }
+        
+        button:hover {
+            background: #3a554c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(74, 107, 95, 0.3);
+        }
+        
+        .result {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 10px;
+            background: rgba(232, 195, 185, 0.15);
+            border: 1px solid var(--rose);
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+        
+        .result.show {
+            background: rgba(197, 164, 126, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result h3 {
+            font-size: 1.8rem;
+            color: var(--forest);
+            font-family: 'Great Vibes', cursive;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result p {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+            color: #5a5a5a;
+        }
+        
+        .table-info {
+            margin-top: 8px;
+            font-style: italic;
+            color: var(--forest);
+            font-weight: 500;
+        }
+        
+        .guest-list {
+            margin-top: 15px;
+            text-align: left;
+            max-height: 250px;
+            overflow-y: auto;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--rose);
+        }
+        
+        .guest-list h4 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--forest);
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+        }
+        
+        .guest-item {
+            padding: 6px 0;
+            border-bottom: 1px dashed #e0d6c9;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .guest-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .guest-table {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        
+        .vip-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        
+        .table-badge {
+            display: inline-block;
+            background: var(--forest);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 8px;
+            font-weight: bold;
+        }
+        
+        .error {
+            color: #c0392b;
+            font-weight: 500;
+            margin-top: 10px;
+            min-height: 24px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            color: var(--forest);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        
+        .hearts {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+            color: var(--rose);
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .lookup-section {
+                padding: 1.8rem;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .guest-list {
+                font-size: 0.95rem;
+                max-height: 200px;
+            }
+            
+            .guest-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .guest-table {
+                margin-left: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">John Mark & Shaine</div>
+            <div class="date-location">Sunday, the Twenty First of December • Two Thousand Twenty-Five • Vista Hill Private Resort</div>
+        </header>
+        
+        <section class="lookup-section">
+            <h2>Find Your Table</h2>
+            <p class="instructions">Search by your name or table number</p>
+            
+            <div class="input-group">
+                <input type="text" id="guestInput" placeholder="Your full name or table (VIP, 1-11)" aria-label="Guest name or table number">
+                <button id="lookupBtn">Find</button>
+            </div>
+            
+            <div class="error" id="error"></div>
+            
+            <div class="result" id="result">
+                <div>
+                    <p>Enter your name or table to find your seating assignment</p>
+                    <p class="table-info" style="margin-top: 8px; font-size: 0.95rem;">Example: "Nelly Cay" or "VIP" or "5"</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <div class="hearts">❦ ❦ ❦</div>
+            <p>We joyfully invite you to celebrate our wedding day</p>
+            <p style="margin-top: 8px; font-size: 0.95rem; color: #777;">For questions, contact this info 0991-978-4527</p>
+        </footer>
+    </div>
+
+    <script>
+        // Individual guest data structure with explicit table naming
+        const tables = {
+            "vip": {
+                name: "VIP Table",
+                vip: true,
+                guests: [
+                    "Oliver Montarde", 
+                    "Jealyn Montarde", 
+                    "Myrna Villamor",
+                    "Francis Villamor",
+                    "Michael Mendoza",  
+                    "Judith Mendoza",
+                    "Angeli Muñoz",
+                    "Pef Cay",
+                    "Nelly Cay",
+                    "Sally Borinaga",
+                    "Nic Pablo",
+                    "Ampy Pablo",
+                    "Mitchel Muñoz"
+                ]
+            },
+            "1": {
+                name: "Table 1",
+                guests: [
+                    "Phil Khlouie Kennith Cay", "Adele Cay", "Mitch Mendoza", "Austine Jude Mendoza", "Simeon Tagala","Ma. Lorena Tagala", "Lolita Mercado", " Apolinar Mercado"
+                ]
+            },
+            "2": {
+                name: "Table 2",
+                guests: [
+                    "Alvin Regulacion", "Lea Nielle Regulacion", "Lanz Matthew Regulacion", "Jazzen James Regulacion", "Japhet Cay", "Kimberly Cay","Ayesha Naiomi Cay","Ashley Nathan Cay" 
+                ]
+            },
+            "3": {
+                name: "Table 3",
+                guests: [
+                    "Robert Borinaga", "Marian Diamante", "John Matthew Regulacion", "Jenilyn Borinaga", " Lea Pablo", "Althea Pablo", "Levi Ople", "JP Ople"
+                ]
+            },
+            "4": {
+                name: "Table 4",
+                guests: [
+                    "Gloria Canaba","Denise Lourille Evangelista", "Madonna May Caraniwan","Luningning Caraniwan", "Reydan Caraniwan", "Anaya Coleen Meneses", "Maegan Colarat","Manrique Meneses" 
+                ]
+            },
+            "5": {
+                name: "Table 5",
+                guests: [
+                    "Samson Calag","Hermie Calag", "Serafin De Leon","Norma De Leon","Lydia Castante","Isabel Mariano","Ismael Mariano",
+                    "Adelina Leny Reyes"
+                ]
+            },
+            "6": {
+                name: "Table 6",
+                guests: [
+                    "Andre Tuazon","Thea Tuazon","Teresita Coleto","Ben Coleto","Cynthia Tugot","Janet Tugot"
+                ]
+            },
+            "7": {
+                name: "Table 7",
+                guests: [
+                    "Genevieve Rombines", "Jon Marcus Rombines","Regina Jabinal","Myra Regondola","Ginalyn Laab","Florence Astilla",
+                    "Emely Santos","Ralph Carlo Tan"
+                ]
+            },
+            "8": {
+                name: "Table 8",
+                guests: [
+                    "Cyrene Keilah Calatin","Charmaine Taala","Zeref Zayn Taala","Richel Dedumo","Mary Gerardine Dedumo","Sherilyn Maderazo",
+                    "Zel","Rona"
+                ]
+            },
+            "9": {
+                name: "Table 9",
+                guests: [
+                    "Jeaneth Nuesca","Loryss Faderanga","Ruperto Lopez","Noreen Jayne Alcon","Mary Audrey Cilo","Jonhle Cawil","Charina Cilo"
+                ]
+            },
+            "10": {
+                name: "Table 10",
+                guests: [
+                    "Francisco Panopio", "Romeo Suliguin", "Divina Elecho","Rowena Bulos","Myrene Aunario","Rema Regala","Mary Rose Regala"
+                ]
+            },
+            "11": {
+                name: "Table 11",
+                guests: [
+                    "Satya de Jesus","Kahla de Jesus","Sophia Jane Lupena", "Ericka Mae Salinas"
+                ]
+            }
+        };
+
+        // Create guest lookup map (normalized names)
+        const guestMap = {};
+        Object.entries(tables).forEach(([tableKey, tableData]) => {
+            tableData.guests.forEach(guestName => {
+                const normalized = guestName.toLowerCase().replace(/\s+/g, '');
+                guestMap[normalized] = {
+                    name: guestName,
+                    tableKey: tableKey,
+                    tableName: tableData.name,
+                    vip: !!tableData.vip
+                };
+            });
+        });
+
+        document.getElementById('lookupBtn').addEventListener('click', findTable);
+        document.getElementById('guestInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') findTable();
+        });
+
+        function findTable() {
+            const input = document.getElementById('guestInput').value.trim();
+            const resultDiv = document.getElementById('result');
+            const errorDiv = document.getElementById('error');
+            
+            // Clear previous results
+            errorDiv.textContent = '';
+            resultDiv.innerHTML = '';
+            resultDiv.classList.remove('show');
+            
+            if (!input) {
+                errorDiv.textContent = 'Please enter your name or table number';
+                return;
+            }
+            
+            const normalizedInput = input.toLowerCase().replace(/\s+/g, '');
+            
+            // Check for VIP table
+            if (normalizedInput === "vip" || normalizedInput === "viptable" || normalizedInput === "vip table") {
+                displayTableResult("vip");
+                return;
+            }
+            
+            // Check for regular table numbers (1-11)
+            if (/^[1-9]$|^1[01]$/.test(normalizedInput) && tables[normalizedInput]) {
+                displayTableResult(normalizedInput);
+                return;
+            }
+            
+            // Check if input matches a guest name
+            if (guestMap[normalizedInput]) {
+                displayGuestResult(guestMap[normalizedInput]);
+                return;
+            }
+            
+            // Fuzzy match for names (check partial matches)
+            const matches = Object.keys(guestMap).filter(key => 
+                key.includes(normalizedInput) || normalizedInput.includes(key)
+            );
+            
+            if (matches.length > 0) {
+                // Get the first match
+                displayGuestResult(guestMap[matches[0]]);
+                return;
+            }
+            
+            // No match found
+            errorDiv.textContent = 'No matching reservation found. Please check your details.';
+            resultDiv.innerHTML = `
+                <div>
+                    <p>Try searching:</p>
+                    <p class="table-info" style="margin-top: 5px;">• Your full name (e.g., "Nelly Cay")</p>
+                    <p class="table-info">• "VIP" for head table</p>
+                    <p class="table-info">• Table number (1-11)</p>
+                </div>
+            `;
+            resultDiv.classList.add('show');
+        }
+
+        function displayTableResult(tableKey) {
+            const table = tables[tableKey];
+            const resultDiv = document.getElementById('result');
+            
+            // Create guest list HTML
+            const guestListHTML = table.guests.map(guest => `
+                <div class="guest-item">
+                    <span class="guest-name">${guest}</span>
+                    <span class="guest-table">${table.name}</span>
+                </div>
+            `).join('');
+            
+            resultDiv.innerHTML = `
+                <div style="width: 100%;">
+                    <h3>${table.name} ${table.vip ? '<span class="vip-badge">VIP</span>' : ''}</h3>
+                    <p class="table-info">${table.guests.length} guests</p>
+                    <div class="guest-list">
+                        <h4>Guests Seated Here</h4>
+                        ${guestListHTML}
+                    </div>
+                </div>
+            `;
+            resultDiv.classList.add('show');
+        }
+
+        function displayGuestResult(guestData) {
+            const resultDiv = document.getElementById('result');
+            const tableDisplay = guestData.vip ? 
+                `<span class="vip-badge">VIP</span>` : 
+                `<span class="table-badge">${guestData.tableName}</span>`;
+            
+            resultDiv.innerHTML = `
+                <div>
+                    <h3>${guestData.name}</h3>
+                    <p>Your Table Assignment</p>
+                    <p class="table-name">${tableDisplay}</p>
+                    <p class="table-info">Please be seated with your party</p>
+                </div>
+            `;
+            resultDiv.classList.add('show');
+        }
+    </script>
+</body>
+</html>
